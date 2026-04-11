@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+	<head>
+	<title>Flexbox Layouts</title>
+    <style>
+        header{
+            background:orange;
+            padding:20px;
+            margin:5px
+        }
+        #hero{
+            background:orange;
+            padding:100px;
+            margin:5px;
+            text-align:center
+        }
+        section{
+            display: flex;
+        }
+        article{
+            background:orange;
+            padding:20px;
+            margin:5px;
+            flex:2;
+        }
+        aside{
+            background:orange;
+            padding:20px;
+            margin:5px;
+            flex:1;
+        }
+        footer{
+            background:orange;
+            padding:20px;
+            margin:5px;
+        }
+    </style>
+	</head>
+	<body>
+        <header>Logo and Nav</header>
+        <div id="hero">Hero</div>
+        <section>
+            <!-- Start CONTENT FOR Q1 -->
+             <article>
+            <h3>Promotion</h3>
+            <img src="images/sun.jpg" alt="1 for 1 offer"/>
+            <img src="images/sun.jpg" alt="10% off"/>
+            <img src="images/sun.jpg" alt="Citibank promotion"/>
+            </article>
+             <!-- Start CONTENT FOR Q1 -->
+            <article>
+                <h3>About Us</h3>
+                <p><img src="images/sun.jpg" alt="videography and photography"  style="float:right;margin:0 0 10px 10px"/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </article>
+            <aside>
+                <h3>News</h3>
+                <ul>
+                    <li>Ut enim ad minim veniam.</li>
+                    <li>Quis nostrud exercitation.</li>
+                    <li>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                </ul>
+            </aside>
+        </section>
+        <footer>Footer</footer>
+	</body>
+</html>
