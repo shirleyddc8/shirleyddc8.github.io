@@ -6,9 +6,9 @@
   <title>Mandai Night Safari 404</title>
 
   <style>
-    /* =========================================================
-       01. ROOT VARIABLES
-    ========================================================== */
+/* =========================================================
+    01. ROOT VARIABLES
+========================================================== */
     :root {
       --cream: #FAF5E9;
       --soft: #FBEBCE;
@@ -20,108 +20,107 @@
       --beam-size: 26vmax;
     }
 
-    /* =========================================================
-       02. BASE RESET
-    ========================================================== */
+/* =========================================================
+  02. BASE RESET
+========================================================== */
     * {
       box-sizing: border-box;
     }
 
-    html,
-    body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #030705;
-  font-family: Georgia, "Times New Roman", serif;
-  color: var(--cream);
-}
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #030705;
+        font-family: Georgia, "Times New Roman", serif;
+        color: var(--cream);
+    }
 
     body.active {
       cursor: none;
     }
 
-    /* =========================================================
-       03. MAIN APP WRAPPER
-    ========================================================== */
+/* =========================================================
+   03. MAIN APP WRAPPER
+========================================================== */
     .app {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at center, rgba(12, 24, 18, 0.22), rgba(2, 6, 4, 0.85)),
-    #030705;
-}
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background:
+     radial-gradient(circle at center, rgba(12, 24, 18, 0.22), rgba(2, 6, 4, 0.85)),
+     #030705;
+    }
 
-    .scene {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #030705;
-}
+   .scene {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #030705;
+    }
 
-    /* =========================================================
-       04. FOREST LAYERS
-       background.png = far mist
-       forest-background.png = main forest
-       foreground.png = front leaves
-    ========================================================== */
+/* =========================================================
+  04. FOREST LAYERS
+  background.png = far mist
+  forest-background.png = main forest
+  foreground.png = front leaves
+========================================================== */
     .layer {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
-}
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      -position: center center;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
 
-    /* 1. Background */
-.background {
-  z-index: 1;
-  opacity: 1;
-    animation: driftFar 20s ease-in-out infinite;
-}
+  /* 1. Background */
+      .background {
+        z-index: 1;
+        opacity: 1;
+        animation: driftFar 20s ease-in-out infinite;
+    }
 
+  /* 2. Forest background */
+      .forest-background {
+        z-index: 2;
+        opacity: 0.46;
+        animation: driftMain 16s ease-in-out infinite;
+    }
 
-/* 2. Forest background */
-.forest-background {
-  z-index: 2;
-  opacity: 0.46;
-  animation: driftMain 16s ease-in-out infinite;
-}
-
-/* 3. Midground */
-.midground {
-  z-index: 3;
-  opacity: 0.48;
-  animation: driftMain 12s ease-in-out infinite;
-}
+  /* 3. Midground */
+      .midground {
+      z-index: 3;
+      opacity: 0.48;
+      animation: driftMain 12s ease-in-out infinite;
+    }
 
 /* 4. Foreground 2 */
-.foreground2 {
-  z-index: 4;
-  opacity: 0.57;
-  animation: driftFront 10s ease-in-out infinite;
-}
+    .foreground2 {
+      z-index: 4;
+      opacity: 0.57;
+      animation: driftFront 10s ease-in-out infinite;
+    }
 
 /* 5. Foreground */
-.foreground {
-  z-index: 6;
-  opacity: 1;
-  animation: driftFront 8s ease-in-out infinite;
-}
+    .foreground {
+      z-index: 6;
+      opacity: 1;
+      animation: driftFront 8s ease-in-out infinite;
+    }
 
-    /* =========================================================
-       05. HAZE / MIST LAYER
-    ========================================================== */
+/* =========================================================
+  05. HAZE / MIST LAYER
+========================================================== */
     .haze,
     .haze::before,
     .haze::after {
@@ -159,9 +158,9 @@
       animation: hazeMoveC 14s ease-in-out infinite;
     }
 
-    /* =========================================================
-       06. ANIMAL LAYER
-    ========================================================== */
+/* =========================================================
+  06. ANIMAL LAYER
+========================================================== */
     .animals {
       position: absolute;
       inset: 0;
@@ -170,14 +169,14 @@
     }
 
    .animal {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  width: var(--w);
-  opacity: 0.32;
-  filter: brightness(0.9) contrast(1.08) saturate(1.05) drop-shadow(0 8px 14px rgba(0,0,0,0.35));
-  transition: opacity 0.28s ease, filter 0.28s ease, transform 0.28s ease;
-  pointer-events: none;
-}
+      position: absolute;
+      transform: translate(-50%, -50%);
+      width: var(--w);
+      opacity: 0.32;
+      filter: brightness(0.9) contrast(1.08) saturate(1.05) drop-shadow(0 8px 14px rgba(0,0,0,0.35));
+      transition: opacity 0.28s ease, filter 0.28s ease, transform 0.28s ease;
+      pointer-events: none;
+    }
 
 .animal.found {
   opacity: 1;
@@ -187,7 +186,7 @@
     saturate(1.1)
     drop-shadow(0 0 22px rgba(255, 234, 150, 0.28))
     drop-shadow(0 12px 18px rgba(0,0,0,0.35));
-}
+  }
 
 .tasmanian.found {
   opacity: 1;
@@ -198,43 +197,44 @@
     saturate(1.12)
     drop-shadow(0 0 10px rgba(255, 234, 150, 0.18))
     drop-shadow(0 12px 18px rgba(0,0,0,0.45));
-}
-    /* =========================================================
-       07. ANIMAL POSITIONS + SIZES
-       Adjust these if you want later
-    ========================================================== */
+  }
+
+/* =========================================================
+  07. ANIMAL POSITIONS + SIZES
+      Adjust these if you want later
+========================================================== */
    .tiger {
-  left: 30%;
-  top: 20%;
-  --w: 40%;
-  animation: tigerIdle 4.8s ease-in-out infinite;
-}
+      left: 30%;
+      top: 20%;
+      --w: 40%;
+      animation: tigerIdle 4.8s ease-in-out infinite;
+      }
 
-.pangolin {
-  left: 53%;
-  top: 35%;
-  --w: 25%;
-  animation: pangolinIdle 5.2s ease-in-out infinite;
-}
+    .pangolin {
+      left: 53%;
+      top: 35%;
+      --w: 25%;
+      animation: pangolinIdle 5.2s ease-in-out infinite;
+    }
 
-.tasmanian {
-  left: 14%;
-  top: 79%;
-  --w: 20%;
-  opacity: 1;
-  z-index: 7;
+  .tasmanian {
+    left: 14%;
+    top: 79%;
+    --w: 20%;
+    opacity: 1;
+    z-index: 7;
 
-  /* sharper + more contrast */
-  filter:
+/* sharper + more contrast */
+    filter:
     brightness(1.18)
     contrast(1.35)
     saturate(1.08)
     drop-shadow(0 6px 10px rgba(0,0,0,0.45));
 
-  image-rendering: auto; /* ensure no blur from browser */
+    image-rendering: auto; /* ensure no blur from browser */
 
-  animation: tasmanianIdle 4.2s ease-in-out infinite;
-}
+    animation: tasmanianIdle 4.2s ease-in-out infinite;
+  }
 
 .leopard {
   left: 67%;
@@ -242,418 +242,418 @@
   --w: 30%;
   animation: leopardIdle 5s ease-in-out infinite;
 }
- /* =========================================================
+ 
+/* =========================================================
    08. FACT BOXES
    Positioned beside / above animals so they do not block
 ========================================================== */
 
-.facts {
-  position: absolute;
-  inset: 0;
-  z-index: 20;
-  pointer-events: none;
-}
+  .facts {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+  }
 
-.fact {
-  position: absolute;
-  width: min(24vw, 290px);
-  min-width: 180px;
-  padding: 14px 18px;
-  border-radius: 18px;
+  .fact {
+    position: absolute;
+    width: min(24vw, 290px);
+    min-width: 180px;
+    padding: 14px 18px;
+    border-radius: 18px;
 
-  transform: translate(0, 10px);
-  overflow: hidden;
+    transform: translate(0, 10px);
+    overflow: hidden;
 
-  background: rgba(2, 8, 6, 0.70);
-  border: 1px solid rgba(255, 220, 140, 0.25);
+    background: rgba(2, 8, 6, 0.70);
+    border: 1px solid rgba(255, 220, 140, 0.25);
 
-  box-shadow:
-    0 14px 30px rgba(0,0,0,0.45),
-    0 0 25px rgba(255, 220, 120, 0.08);
+    box-shadow:
+      0 14px 30px rgba(0,0,0,0.45),
+      0 0 25px rgba(255, 220, 120, 0.08);
 
-  backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
 
-  color: rgba(255, 248, 225, 0.99);
-  font-size: clamp(1rem, 1.1vw, 1.12rem);
-  line-height: 1.6;
-  letter-spacing: 0.2px;
+    color: rgba(255, 248, 225, 0.99);
+    font-size: clamp(1rem, 1.1vw, 1.12rem);
+    line-height: 1.6;
+    letter-spacing: 0.2px;
 
-  text-shadow:
-    0 1px 2px rgba(0,0,0,0.9),
-    0 2px 8px rgba(0,0,0,0.85);
+    text-shadow:
+      0 1px 2px rgba(0,0,0,0.9),
+      0 2px 8px rgba(0,0,0,0.85);
 
-  opacity: 0;
-  transition: opacity 0.22s ease, transform 0.22s ease;
+    opacity: 0;
+    transition: opacity 0.22s ease, transform 0.22s ease;
 
-  pointer-events: auto;
-  z-index: 20;
-}
+    pointer-events: auto;
+    z-index: 20;
+  }
 
-.fact::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 18px;
+  .fact::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
 
-  background: radial-gradient(
-    circle at 40% 50%,
-    rgba(0,0,0,0.35),
-    rgba(0,0,0,0.55)
-  );
+    background: radial-gradient(
+      circle at 40% 50%,
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.55)
+    );
 
-  pointer-events: none;
-  z-index: 1;
-}
+    pointer-events: none;
+    z-index: 1;
+  }
 
-.fact > * {
-  position: relative;
-  z-index: 2;
-}
+  .fact > * {
+    position: relative;
+    z-index: 2;
+  }
 
-.fact.show {
-  opacity: 1;
-  transform: translate(0, 0);
-}
+  .fact.show {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
 
-.fact .name {
-  display: block;
-  margin-bottom: 8px;
+  .fact .name {
+    display: block;
+    margin-bottom: 8px;
 
-  color: #ffd86a;
-  font-weight: 600;
-  font-size: 1.3rem;
+    color: #ffd86a;
+    font-weight: 600;
+    font-size: 1.3rem;
 
-  text-shadow:
-    0 2px 4px rgba(0,0,0,0.7),
-    0 0 10px rgba(255, 210, 120, 0.25);
-}
+    text-shadow:
+      0 2px 4px rgba(0,0,0,0.7),
+      0 0 10px rgba(255, 210, 120, 0.25);
+  }
 
 /* Tiger fact */
-.fact-tiger {
-  left: 18%;
-  top: 33%;
-}
+  .fact-tiger {
+    left: 18%;
+    top: 33%;
+  }
 
 /* Pangolin fact */
-.fact-pangolin {
-  left: 48%;
-  top: 5%;
-}
+  .fact-pangolin {
+    left: 48%;
+    top: 5%;
+  }
 
 /* Tasmanian fact */
-.fact-tasmanian {
-  left: 8%;
-  top: 50%;
-}
+  .fact-tasmanian {
+    left: 8%;
+    top: 50%;
+  }
 
 /* Leopard fact */
-.fact-leopard {
-  left: 62%;
-  top: 41%;
-}
-   /* =========================================================
+  .fact-leopard {
+    left: 62%;
+    top: 41%;
+  }
+/* =========================================================
    09. DARKNESS + TORCH
 ========================================================== */
-.darkness,
-.flashlight-core {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.45s ease;
-}
+  .darkness,
+    .flashlight-core {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
 
-.darkness {
-  z-index: 10;
-  background:
-    radial-gradient(
-      circle var(--beam-size) at var(--cursor-x) var(--cursor-y),
-      rgba(255, 244, 205, 0.28) 0%,
-      rgba(236, 225, 180, 0.15) 20%,
-      rgba(18, 28, 23, 0.52) 42%,
-      rgba(2, 5, 4, 0.86) 68%,
-      rgba(0, 0, 0, 0.95) 100%
-    );
-}
+  .darkness {
+    z-index: 10;
+    background:
+      radial-gradient(
+        circle var(--beam-size) at var(--cursor-x) var(--cursor-y),
+        rgba(255, 244, 205, 0.28) 0%,
+        rgba(236, 225, 180, 0.15) 20%,
+        rgba(18, 28, 23, 0.52) 42%,
+        rgba(2, 5, 4, 0.86) 68%,
+        rgba(0, 0, 0, 0.95) 100%
+      );
+  }
 
-.flashlight-core {
-  z-index: 11;
-  background:
-    radial-gradient(
-      circle 14vmax at var(--cursor-x) var(--cursor-y),
-      rgba(255, 248, 222, 0.42) 0%,
-      rgba(255, 243, 188, 0.22) 28%,
-      rgba(255, 239, 168, 0.08) 48%,
-      transparent 74%
-    );
-  filter: blur(8px);
-}
+  .flashlight-core {
+    z-index: 11;
+    background:
+      radial-gradient(
+        circle 14vmax at var(--cursor-x) var(--cursor-y),
+        rgba(255, 248, 222, 0.42) 0%,
+        rgba(255, 243, 188, 0.22) 28%,
+        rgba(255, 239, 168, 0.08) 48%,
+        transparent 74%
+      );
+    filter: blur(8px);
+  }
 
-body.active .darkness,
-body.active .flashlight-core {
-  opacity: 1;
-}
+  body.active .darkness,
+  body.active .flashlight-core {
+    opacity: 1;
+  }
 
-    /* =========================================================
-       10. INTRO OVERLAY
-    ========================================================== */
-.overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background: radial-gradient(circle at center, rgba(0,0,0,0.20), rgba(0,0,0,0.45));
-  transition: opacity 0.10s ease, visibility 0.10s ease;
-}
+/* =========================================================
+  10. INTRO OVERLAY
+========================================================== */
+  .overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: radial-gradient(circle at center, rgba(0,0,0,0.20), rgba(0,0,0,0.45));
+    transition: opacity 0.10s ease, visibility 0.10s ease;
+  }
 
-    .overlay.hide {
-      opacity: 0;
-      visibility: hidden;
-    }
+  .overlay.hide {
+    opacity: 0;
+    visibility: hidden;
+  }
 
-    .intro-card {
-      width: min(92vw, 710px);
-      padding: 34px 28px 28px;
-      border-radius: 30px;
-      background: rgba(5, 18, 13, 0.52);
-      border: 1px solid rgba(251, 235, 206, 0.16);
-      box-shadow: 0 18px 50px rgba(0,0,0,0.28);
-      text-align: center;
-      backdrop-filter: blur(10px);
-    }
+  .intro-card {
+    width: min(92vw, 710px);
+    padding: 34px 28px 28px;
+    border-radius: 30px;
+    background: rgba(5, 18, 13, 0.52);
+    border: 1px solid rgba(251, 235, 206, 0.16);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.28);
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
 
-    .intro-card h1 {
-      margin: 0 0 12px;
-      color: var(--yellow);
-      font-size: clamp(3rem, 7vw, 5.6rem);
-      line-height: 1;
-    }
+  .intro-card h1 {
+    margin: 0 0 12px;
+    color: var(--yellow);
+    font-size: clamp(3rem, 7vw, 5.6rem);
+    line-height: 1;
+  }
 
-    .intro-card h2 {
-      margin: 0 0 20px;
-      font-size: clamp(1.15rem, 2.4vw, 1.9rem);
-      color: var(--soft);
-      font-weight: normal;
-      line-height: 1.45;
-    }
+  .intro-card h2 {
+    margin: 0 0 20px;
+    font-size: clamp(1.15rem, 2.4vw, 1.9rem);
+    color: var(--soft);
+    font-weight: normal;
+    line-height: 1.45;
+  }
 
-    .intro-copy {
-      max-width: 560px;
-      margin: 0 auto 24px;
-      font-size: clamp(1rem, 1.5vw, 1.18rem);
-      line-height: 1.72;
-      color: rgba(250,245,233,0.96);
-    }
+  .intro-copy {
+    max-width: 560px;
+    margin: 0 auto 24px;
+    font-size: clamp(1rem, 1.5vw, 1.18rem);
+    line-height: 1.72;
+    color: rgba(250,245,233,0.96);
+  }
 /* =========================================================
    10A. INTRO PAGE ONLY
    Hide animals before torch starts
    Make forest silhouette darker on 404 page
 ========================================================== */
-body:not(.active) .animal,
-body:not(.active) .fact,
-body:not(.active) .hint,
-body:not(.active) .cta {
-  opacity: 0 !important;
-  pointer-events: auto;
-}
+  body:not(.active) .animal,
+  body:not(.active) .fact,
+  body:not(.active) .hint,
+  body:not(.active) .cta {
+    opacity: 0 !important;
+    pointer-events: auto;
+  }
 
-body:not(.active) .background {
-  opacity: 1;
-  filter: brightness(0.16) saturate(0.70);
-}
+  body:not(.active) .background {
+    opacity: 1;
+    filter: brightness(0.16) saturate(0.70);
+  }
 
-body:not(.active) .forest-background {
-  opacity: 0.46;
-  filter: brightness(0.14) saturate(0.65);
-}
+  body:not(.active) .forest-background {
+    opacity: 0.46;
+    filter: brightness(0.14) saturate(0.65);
+  }
 
-body:not(.active) .midground {
-  opacity: 0.48;
-  filter: brightness(0.16) saturate(0.62);
-}
+  body:not(.active) .midground {
+    opacity: 0.48;
+    filter: brightness(0.16) saturate(0.62);
+  }
 
-body:not(.active) .foreground2 {
-  opacity: 0.57;
-  filter: brightness(0.10) saturate(0.65);
-}
+  body:not(.active) .foreground2 {
+    opacity: 0.57;
+    filter: brightness(0.10) saturate(0.65);
+  }
 
-body:not(.active) .foreground {
-  opacity: 1;
-  filter: brightness(0.16) saturate(0.68);
-}
+  body:not(.active) .foreground {
+    opacity: 1;
+    filter: brightness(0.16) saturate(0.68);
+  }
 
-body:not(.active) .haze {
-  opacity: 0.08;
-}
+  body:not(.active) .haze {
+    opacity: 0.08;
+  }
 
-body:not(.active) .haze::before,
-body:not(.active) .haze::after {
-  opacity: 0.04;
-}
-    /* =========================================================
-       11. TORCH SWITCH
-    ========================================================== */
-    .switch-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
+  body:not(.active) .haze::before,
+  body:not(.active) .haze::after {
+    opacity: 0.04;
+  }
+ /* =========================================================
+   11. TORCH SWITCH
+ ========================================================== */
+   .switch-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
 
-    .torch-switch {
-      position: relative;
-      width: 120px;
-      height: 58px;
-      border: 1px solid rgba(251,235,206,0.30);
-      border-radius: 999px;
-      background: rgba(251,235,206,0.10);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.22);
-      cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-    }
+  .torch-switch {
+    position: relative;
+    width: 120px;
+    height: 58px;
+    border: 1px solid rgba(251,235,206,0.30);
+    border-radius: 999px;
+    background: rgba(251,235,206,0.10);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
 
-    .torch-switch:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(0,0,0,0.28);
-    }
+  .torch-switch:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.28);
+  }
 
-    .torch-switch .knob {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(145deg, #fff3ce, #f8ddb8);
-      color: #202721;
-      font-size: 1.3rem;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.18);
-      transition: transform 0.35s ease;
-    }
+  .torch-switch .knob {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg, #fff3ce, #f8ddb8);
+    color: #202721;
+    font-size: 1.3rem;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+    transition: transform 0.35s ease;
+  }
 
-    .torch-switch.on {
-      background: rgba(255,204,0,0.18);
-      box-shadow: 0 0 22px rgba(255,204,0,0.15), 0 14px 30px rgba(0,0,0,0.28);
-    }
+  .torch-switch.on {
+    background: rgba(255,204,0,0.18);
+    box-shadow: 0 0 22px rgba(255,204,0,0.15), 0 14px 30px rgba(0,0,0,0.28);
+  }
 
-    .torch-switch.on .knob {
-      transform: translateX(62px);
-    }
+  .torch-switch.on .knob {
+    transform: translateX(62px);
+  }
 
-    .switch-label {
-      font-size: 1rem;
-      color: var(--soft);
-    }
+  .switch-label {
+    font-size: 1rem;
+    color: var(--soft);
+  }
 
-    /* =========================================================
-       12. HINT TEXT
-    ========================================================== */
-    .hint {
-      position: absolute;
-      left: 50%;
-      bottom: 22px;
-      transform: translateX(-50%);
-      z-index: 12;
-      padding: 10px 18px;
-      border-radius: 999px;
-      background: rgba(7,20,15,0.42);
-      border: 1px solid rgba(251,235,206,0.12);
-      color: rgba(250,245,233,0.92);
-      font-size: 0.95rem;
-      opacity: 0;
-      transition: opacity 0.45s ease;
-      backdrop-filter: blur(8px);
-      pointer-events: none;
-    }
-
-    body.active .hint {
-      opacity: 1;
-    }
-
-   /* =========================================================
-   13. BACK BUTTON
-   Revealed by torch like fact boxes
+/* =========================================================
+  12. HINT TEXT
 ========================================================== */
-.cta {
-  position: absolute;
-  left: 50%;
-  bottom: 80px;
-  transform: translateX(-50%) translateY(10px);
+  .hint {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    z-index: 12;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: rgba(7,20,15,0.42);
+    border: 1px solid rgba(251,235,206,0.12);
+    color: rgba(250,245,233,0.92);
+    font-size: 0.95rem;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    backdrop-filter: blur(8px);
+    pointer-events: none;
+  }
 
-  z-index: 20;
+  body.active .hint {
+    opacity: 1;
+  }
 
-  padding: 12px 20px;
-  border-radius: 999px;
+/* =========================================================
+  13. BACK BUTTON
+      Revealed by torch like fact boxes
+========================================================== */
+  .cta {
+    position: absolute;
+    left: 50%;
+    bottom: 80px;
+    transform: translateX(-50%) translateY(10px);
 
-  background: rgba(231, 52, 43, 0.70);
-  color: #FBEBCE;
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 600;
+    z-index: 20;
 
-  border: 1px solid rgba(251,235,206,0.18);
-  backdrop-filter: blur(6px);
+    padding: 12px 20px;
+    border-radius: 999px;
 
-  opacity: 0;
-  transition: opacity 0.25s ease, transform 0.25s ease, background 0.25s ease;
+    background: rgba(231, 52, 43, 0.70);
+    color: #FBEBCE;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
 
-  pointer-events: none;
-}
+    border: 1px solid rgba(251,235,206,0.18);
+    backdrop-filter: blur(6px);
 
-.cta.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-  pointer-events: auto;
-}
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease, background 0.25s ease;
 
-.cta:hover {
-  background: rgba(231, 52, 43, 0.82);
-  transform: translateX(-50%) translateY(-3px);
-}
+    pointer-events: none;
+  }
 
- /* Fireflies */
-    
-.fireflies {
-  position: absolute;
-  inset: 0;
-  z-index: 9; 
-  pointer-events: none;
-  overflow: hidden;
-}
+  .cta.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+
+  .cta:hover {
+    background: rgba(231, 52, 43, 0.82);
+    transform: translateX(-50%) translateY(-3px);
+  }
+
+/* Fireflies */
+  .fireflies {
+    position: absolute;
+    inset: 0;
+    z-index: 9; 
+    pointer-events: none;
+    overflow: hidden;
+  }
  
- .firefly {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,245,170,1) 0%, rgba(255,216,77,0.95) 35%, rgba(255,216,77,0) 75%);
-  opacity: 0.9;
-  filter: blur(0.5px);
-  box-shadow: 0 0 10px rgba(255, 220, 100, 0.7);
-  animation: fireflyBlink ease-in-out infinite;
-}
+  .firefly {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,245,170,1) 0%, rgba(255,216,77,0.95) 35%, rgba(255,216,77,0) 75%);
+    opacity: 0.9;
+    filter: blur(0.5px);
+    box-shadow: 0 0 10px rgba(255, 220, 100, 0.7);
+    animation: fireflyBlink ease-in-out infinite;
+  }
 
 
-    /* =========================================================
-       14. KEYFRAMES
-    ========================================================== */
+/* =========================================================
+  14. KEYFRAMES
+========================================================== */
   @keyframes driftFar {
-  0%, 100% { transform: translate3d(0,0,0); }
-  50% { transform: translate3d(-8px,-4px,0); }
-}
+    0%, 100% { transform: translate3d(0,0,0); }
+    50% { transform: translate3d(-8px,-4px,0); }
+  }
 
-@keyframes driftMain {
-  0%, 100% { transform: translate3d(0,0,0); }
-  50% { transform: translate3d(4px,-2px,0); }
-}
+  @keyframes driftMain {
+    0%, 100% { transform: translate3d(0,0,0); }
+    50% { transform: translate3d(4px,-2px,0); }
+  }
 
-@keyframes driftFront {
-  0%, 100% { transform: translate3d(0,0,0); }
-  50% { transform: translate3d(5px,-1px,0); }
-}
+  @keyframes driftFront {
+    0%, 100% { transform: translate3d(0,0,0); }
+    50% { transform: translate3d(5px,-1px,0); }
+  }
 
     @keyframes hazeMoveA {
       0%, 100% { transform: translate3d(0,0,0); }
@@ -670,96 +670,99 @@ body:not(.active) .haze::after {
       50% { transform: translate3d(8px,8px,0); }
     }
 
-    @keyframes tigerIdle {
-      0%, 100% { transform: translate(-50%, -50%) translateY(0px) scale(1); }
-      50% { transform: translate(-50%, -50%) translateY(-5px) scale(1.015); }
+      @keyframes tigerIdle {
+        0%, 100% { transform: translate(-50%, -50%) translateY(0px) scale(1); }
+        50% { transform: translate(-50%, -50%) translateY(-5px) scale(1.015); }
+      }
+
+      @keyframes pangolinIdle {
+        0%, 100% { transform: translate(-50%, -50%) rotate(-2deg); }
+        50% { transform: translate(-50%, -50%) rotate(1deg) translateY(-3px); }
+      }
+
+      @keyframes tasmanianIdle {
+        0%, 100% { transform: translate(-50%, -50%) translateX(0px); }
+        50% { transform: translate(-50%, -50%) translateX(2px) translateY(-2px); }
+      }
+
+      @keyframes leopardIdle {
+        0%, 100% { transform: translate(-50%, -50%) translateY(0px) scale(1); }
+        50% { transform: translate(-50%, -50%) translateY(-4px) scale(1.01); }
+      }
+
+        @keyframes fireflyBlink {
+          0%, 100% { opacity: 0.15; transform: scale(0.8); }
+          50% { opacity: 1; transform: scale(1.2); }
+        }
+
+/* =========================================================
+  15. MOBILE
+========================================================== */
+  :root {
+    --beam-size: 26vmax;
+  }
+      
+  @media (max-width: 768px) {
+    :root {
+      --beam-size: 24vmax;
     }
 
-    @keyframes pangolinIdle {
-      0%, 100% { transform: translate(-50%, -50%) rotate(-2deg); }
-      50% { transform: translate(-50%, -50%) rotate(1deg) translateY(-3px); }
+    .intro-card {
+      padding: 28px 20px 24px;
     }
 
-    @keyframes tasmanianIdle {
-      0%, 100% { transform: translate(-50%, -50%) translateX(0px); }
-      50% { transform: translate(-50%, -50%) translateX(2px) translateY(-2px); }
+    .hint {
+      width: calc(100% - 28px);
+      text-align: center;
+      bottom: 82px;
     }
 
-    @keyframes leopardIdle {
-      0%, 100% { transform: translate(-50%, -50%) translateY(0px) scale(1); }
-      50% { transform: translate(-50%, -50%) translateY(-4px) scale(1.01); }
+    .cta {
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+      bottom: 18px;
+      min-width: 210px;
     }
 
-   @keyframes fireflyBlink {
-  0%, 100% { opacity: 0.15; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.2); }
-}
-    /* =========================================================
-       15. MOBILE
-    ========================================================== */
-      :root {
-  --beam-size: 26vmax;
-}
-      @media (max-width: 768px) {
-      :root {
-        --beam-size: 24vmax;
-      }
-
-      .intro-card {
-        padding: 28px 20px 24px;
-      }
-
-      .hint {
-        width: calc(100% - 28px);
-        text-align: center;
-        bottom: 82px;
-      }
-
-      .cta {
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        bottom: 18px;
-        min-width: 210px;
-      }
-
-      .cta:hover {
-        transform: translateX(-50%) translateY(-3px);
-      }
-
-      .fact {
-        width: min(34vw, 180px);
-        min-width: 120px;
-        font-size: 0.72rem;
-        padding: 8px 10px;
-      }
-
-      .fact .name {
-        font-size: 0.84rem;
-      }
-
-      .tiger { --w: 20%; }
-      .pangolin { --w: 13%; }
-      .tasmanian { --w: 18%; }
-      .leopard { --w: 28%; }
+    .cta:hover {
+      transform: translateX(-50%) translateY(-3px);
     }
-  </style>
-</head>
+
+    .fact {
+      width: min(34vw, 180px);
+      min-width: 120px;
+      font-size: 0.72rem;
+      padding: 8px 10px;
+    }
+
+    .fact .name {
+      font-size: 0.84rem;
+    }
+
+    .tiger { --w: 20%; }
+    .pangolin { --w: 13%; }
+    .tasmanian { --w: 18%; }
+    .leopard { --w: 28%; }
+  }
+    </style>
+  </head>
+
 <body>
   <div class="app">
-    <div class="scene">
+  <div class="scene">
 
-      <!-- 16. FOREST IMAGES -->
-<img class="layer background" src="images/background.png" alt="Background">
-<img class="layer forest-background" src="images/forest-background.png" alt="Forest background">
-<img class="layer midground" src="images/midground.png" alt="Midground">
-<img class="layer foreground2" src="images/foreground2.png" alt="Foreground 2">
-<img class="layer foreground" src="images/foreground.png" alt="Foreground">
-      
-<div class="fireflies"></div>
+<!-- 16. FOREST IMAGES -->
+  <img class="layer background" src="images/background.png" alt="Background">
+  <img class="layer forest-background" src="images/forest-background.png" alt="Forest background">
+  <img class="layer midground" src="images/midground.png" alt="Midground">
+  <img class="layer foreground2" src="images/foreground2.png" alt="Foreground 2">
+  <img class="layer foreground" src="images/foreground.png" alt="Foreground">
+        
+  <div class="fireflies"></div>
 
-      <!-- =====================================================
-     17. ANIMALS
+<!-- =====================================================
+  17. ANIMALS
 ====================================================== -->
 <div class="animals">
   <img class="animal tiger" data-animal="tiger" src="images/tiger.png" alt="Tiger">
@@ -769,7 +772,7 @@ body:not(.active) .haze::after {
 </div>
 
 <!-- =====================================================
-     18. FACT BOXES (NEW LAYER)
+  18. FACT BOXES (NEW LAYER)
 ====================================================== -->
 <div class="facts">
   <div class="fact fact-tiger" data-fact="tiger">
@@ -793,17 +796,17 @@ body:not(.active) .haze::after {
   </div>
 </div>
 
-      <!-- =====================================================
-           18. FOREGROUND + HAZE + LIGHT
-      ====================================================== -->
-      <div class="haze"></div>
-      <div class="darkness"></div>
-      <div class="flashlight-core"></div>
-    </div>
+<!-- =====================================================
+  18. FOREGROUND + HAZE + LIGHT
+====================================================== -->
+    <div class="haze"></div>
+    <div class="darkness"></div>
+    <div class="flashlight-core"></div>
+  </div>
 
-    <!-- =====================================================
-         19. INTRO OVERLAY
-    ====================================================== -->
+<!-- =====================================================
+  19. INTRO OVERLAY
+====================================================== -->
     <div class="overlay" id="overlay">
       <div class="intro-card">
         <h1>404</h1>
@@ -815,25 +818,26 @@ body:not(.active) .haze::after {
           Switch on your torch... and explore.
         </p>
 
-        <div class="switch-wrap">
-          <button class="torch-switch" id="startSwitch" aria-label="Turn on your torch">
-            <span class="knob">🔦</span>
-          </button>
-          <div class="switch-label">Turn on your torch</div>
-        </div>
+      <div class="switch-wrap">
+        <button class="torch-switch" id="startSwitch" aria-label="Turn on your torch">
+          <span class="knob">🔦</span>
+        </button>
+          
+      <div class="switch-label">Turn on your torch</div>
       </div>
     </div>
+  </div>
 
-    <!-- =====================================================
-         20. HINT + BACK BUTTON
-    ====================================================== -->
+<!-- =====================================================
+  20. HINT + BACK BUTTON
+====================================================== -->
     <div class="hint">Move your light through the jungle and uncover the animals hidden in the dark.</div>
 
     <a class="cta" href="https://www.mandai.com/en.html">Return to Trail</a>
 
-    <!-- =====================================================
-         21. AUDIO
-    ====================================================== -->
+<!-- =====================================================
+  21. AUDIO
+====================================================== -->
     <audio id="ambientAudio" loop preload="auto">
       <source src="images/jungle.wav" type="audio/wav">
     </audio>
@@ -847,18 +851,18 @@ body:not(.active) .haze::after {
     </audio>
 
    <audio id="pangolinAudio" preload="auto">
-  <source src="images/pangolin-audio.m4a" type="audio/mp4">
-</audio>
+      <source src="images/pangolin-audio.m4a" type="audio/mp4">
+    </audio>
 
     <audio id="tasmanianAudio" preload="auto">
       <source src="images/tasmanian-devil-audio.m4a" type="audio/mp4">
     </audio>
   </div>
 
-  <script>
-    /* =========================================================
-       22. ELEMENT REFERENCES
-    ========================================================== */
+<script>
+/* =========================================================
+  22. ELEMENT REFERENCES
+========================================================== */
     const body = document.body;
     const overlay = document.getElementById('overlay');
     const startSwitch = document.getElementById('startSwitch');
@@ -867,122 +871,123 @@ body:not(.active) .haze::after {
     const cta = document.querySelector('.cta');
 
     const audioMap = {
-  tiger: document.getElementById('tigerAudio'),
-  leopard: document.getElementById('leopardAudio'),
-  pangolin: document.getElementById('pangolinAudio'),
-  tasmanian: document.getElementById('tasmanianAudio')
-};
-
-    /* =========================================================
-       23. DISCOVERY SETTINGS
-       Tweak these radii if needed
-    ========================================================== */
-    const animalRadiusMap = {
-  tiger: 150,
-  leopard: 170,
-  pangolin: 115,
-  tasmanian: 135
-};
-
-    const state = {
-      active: false,
-      cooldowns: {}
+      tiger: document.getElementById('tigerAudio'),
+      leopard: document.getElementById('leopardAudio'),
+      pangolin: document.getElementById('pangolinAudio'),
+      tasmanian: document.getElementById('tasmanianAudio')
     };
 
-    /* =========================================================
-       24. HELPERS
-    ========================================================== */
-    function clamp(value, min, max) {
-      return Math.max(min, Math.min(max, value));
-    }
-
-    function distance(ax, ay, bx, by) {
-      return Math.hypot(ax - bx, ay - by);
-    }
-
-    /* =========================================================
-       25. UPDATE TORCH POSITION
-    ========================================================== */
-    function setTorch(clientX, clientY) {
-      const x = clamp(clientX, 0, window.innerWidth);
-      const y = clamp(clientY, 0, window.innerHeight);
-
-      document.documentElement.style.setProperty('--cursor-x', `${x}px`);
-      document.documentElement.style.setProperty('--cursor-y', `${y}px`);
-
-     checkAnimals(x, y);
-checkCTA(x, y);
-    }
-
-    /* =========================================================
-   25A. AMBIENT DUCKING (ADD HERE)
+/* =========================================================
+  23. DISCOVERY SETTINGS
+      Tweak these radii if needed
 ========================================================== */
-function duckAmbient(volumeTarget = 0.10, duration = 300) {
-  const start = ambientAudio.volume;
-  const steps = 10;
-  const stepTime = duration / steps;
-  let i = 0;
+  const animalRadiusMap = {
+    tiger: 150,
+    leopard: 170,
+    pangolin: 115,
+    tasmanian: 135
+  };
 
-  const down = setInterval(() => {
-    i++;
-    const v = start + (volumeTarget - start) * (i / steps);
-    ambientAudio.volume = v;
+  const state = {
+    active: false,
+    cooldowns: {}
+  };
 
-    if (i >= steps) clearInterval(down);
-  }, stepTime);
-}
-
-function restoreAmbient(volumeTarget = 0.30, duration = 600) {
-  const start = ambientAudio.volume;
-  const steps = 12;
-  const stepTime = duration / steps;
-  let i = 0;
-
-  const up = setInterval(() => {
-    i++;
-    const v = start + (volumeTarget - start) * (i / steps);
-    ambientAudio.volume = v;
-
-    if (i >= steps) clearInterval(up);
-  }, stepTime);
-}
-
-    /* =========================================================
-   26. PLAY ANIMAL SOUND ON FIRST ENTRY ONLY
+/* =========================================================
+    24. HELPERS
 ========================================================== */
-function playAnimalAudio(name) {
-  const audio = audioMap[name];
-  if (!audio) return;
-
-  const now = Date.now();
-  const last = state.cooldowns[name] || 0;
-
-  if (now - last < 2500) return;
-
-  state.cooldowns[name] = now;
-  audio.currentTime = 0;
-
-  if (name === "tiger") {
-    audio.volume = 0.90;   /* louder tiger */
-  } else if (name === "tasmanian") {
-    audio.volume = 0.30;   /* softer Tasmanian */
-  } else {
-    audio.volume = 0.50;   /* others balanced */
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
   }
 
-  duckAmbient(0.05, 180); // lower background
+  function distance(ax, ay, bx, by) {
+    return Math.hypot(ax - bx, ay - by);
+  }
 
-audio.play().then(() => {
-  setTimeout(() => {
-    restoreAmbient(0.30, 800); // bring back slowly
-  }, 1200);
-}).catch(() => {});
-}
-   /* =========================================================
+/* =========================================================
+    25. UPDATE TORCH POSITION
+========================================================== */
+  function setTorch(clientX, clientY) {
+    const x = clamp(clientX, 0, window.innerWidth);
+    const y = clamp(clientY, 0, window.innerHeight);
+
+    document.documentElement.style.setProperty('--cursor-x', `${x}px`);
+    document.documentElement.style.setProperty('--cursor-y', `${y}px`);
+
+    checkAnimals(x, y);
+    checkCTA(x, y);
+  }
+
+/* =========================================================
+   25A. AMBIENT DUCKING (ADD HERE)
+========================================================== */
+  function duckAmbient(volumeTarget = 0.10, duration = 300) {
+    const start = ambientAudio.volume;
+    const steps = 10;
+    const stepTime = duration / steps;
+    let i = 0;
+
+    const down = setInterval(() => {
+      i++;
+    const v = start + (volumeTarget - start) * (i / steps);
+      ambientAudio.volume = v;
+
+      if (i >= steps) clearInterval(down);
+    }, stepTime);
+  }
+
+  function restoreAmbient(volumeTarget = 0.30, duration = 600) {
+    const start = ambientAudio.volume;
+    const steps = 12;
+    const stepTime = duration / steps;
+    let i = 0;
+
+    const up = setInterval(() => {
+      i++;
+    const v = start + (volumeTarget - start) * (i / steps);
+      ambientAudio.volume = v;
+
+      if (i >= steps) clearInterval(up);
+    }, stepTime);
+  }
+
+/* =========================================================
+   26. PLAY ANIMAL SOUND ON FIRST ENTRY ONLY
+========================================================== */
+  function playAnimalAudio(name) {
+    const audio = audioMap[name];
+      if (!audio) return;
+
+    const now = Date.now();
+    const last = state.cooldowns[name] || 0;
+
+      if (now - last < 2500) return;
+
+      state.cooldowns[name] = now;
+      audio.currentTime = 0;
+
+      if (name === "tiger") {
+      audio.volume = 0.90;   /* louder tiger */
+    } else if (name === "tasmanian") {
+      audio.volume = 0.30;   /* softer Tasmanian */
+    } else {
+      audio.volume = 0.50;   /* others balanced */
+    }
+
+    duckAmbient(0.05, 180); // lower background
+
+  audio.play().then(() => {
+    setTimeout(() => {
+      restoreAmbient(0.30, 800); // bring back slowly
+    }, 1200);
+    }).catch(() => {});
+  }
+
+/* =========================================================
    27. ANIMAL DETECTION
 ========================================================== */
-function checkCTA(pointerX, pointerY) {
-  if (!state.active || !cta) {
+  function checkCTA(pointerX, pointerY) {
+    if (!state.active || !cta) {
     if (cta) cta.classList.remove('show');
     return;
   }
@@ -1000,30 +1005,31 @@ function checkCTA(pointerX, pointerY) {
 }
 
 function checkAnimals(pointerX, pointerY) {
-  if (!state.active) return;
+    if (!state.active) return;
 
-  animals.forEach((animal) => {
-    const rect = animal.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const key = animal.dataset.animal;
-    const radius = animalRadiusMap[key] || 120;
-    const found = distance(pointerX, pointerY, centerX, centerY) < radius;
-    const fact = document.querySelector(`[data-fact="${key}"]`);
+    animals.forEach((animal) => {
+      const rect = animal.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const key = animal.dataset.animal;
+      const radius = animalRadiusMap[key] || 120;
+      const found = distance(pointerX, pointerY, centerX, centerY) < radius;
+      const fact = document.querySelector(`[data-fact="${key}"]`);
 
-    let factHovered = false;
+      let factHovered = false;
 
-    if (fact) {
-      const factRect = fact.getBoundingClientRect();
+      if (fact) {
+        const factRect = fact.getBoundingClientRect();
 
-      /* only allow box hover AFTER the animal has been found
-         or when the box is already visible */
-      if (found || fact.classList.contains('show')) {
-        factHovered =
-          pointerX >= factRect.left &&
-          pointerX <= factRect.right &&
-          pointerY >= factRect.top &&
-          pointerY <= factRect.bottom;
+/* only allow box hover AFTER the animal has been found
+   or when the box is already visible */
+      
+    if (found || fact.classList.contains('show')) {
+      factHovered =
+        pointerX >= factRect.left &&
+        pointerX <= factRect.right &&
+        pointerY >= factRect.top &&
+        pointerY <= factRect.bottom;
       }
 
       const keepShown = found || factHovered;
@@ -1042,54 +1048,54 @@ function checkAnimals(pointerX, pointerY) {
     }
   });
 
-  checkCTA(pointerX, pointerY);
-}
+    checkCTA(pointerX, pointerY);
+  }
 
 
-    /* =========================================================
-       28. POINTER MOVE
-    ========================================================== */
-    function handleMove(event) {
-      if (!state.active) return;
-      const point = event.touches ? event.touches[0] : event;
+/* =========================================================
+  28. POINTER MOVE
+========================================================== */
+  function handleMove(event) {
+    if (!state.active) return;
+    const point = event.touches ? event.touches[0] : event;
       setTorch(point.clientX, point.clientY);
-    }
+  }
 
-    /* =========================================================
+/* =========================================================
    29. AMBIENT AUDIO FADE IN
 ========================================================== */
-function fadeAmbientIn() {
-  ambientAudio.currentTime = 0;
-  ambientAudio.volume = 0;
+  function fadeAmbientIn() {
+    ambientAudio.currentTime = 0;
+    ambientAudio.volume = 0;
 
-  ambientAudio.play().then(() => {
-    let vol = 0;
-    const timer = setInterval(() => {
-      vol += 0.015;
-      ambientAudio.volume = Math.min(vol, 0.30);
-      if (vol >= 0.30) clearInterval(timer);
-    }, 140);
-  }).catch((err) => {
-    console.log("Ambient audio failed:", err);
-  });
-}
+    ambientAudio.play().then(() => {
+      let vol = 0;
+      const timer = setInterval(() => {
+        vol += 0.015;
+        ambientAudio.volume = Math.min(vol, 0.30);
+        if (vol >= 0.30) clearInterval(timer);
+      }, 140);
+    }).catch((err) => {
+      console.log("Ambient audio failed:", err);
+    });
+  }
 
-   /* =========================================================
+/* =========================================================
    29A. FIREFLIES
 ========================================================== */
-const fireflyState = [];
-const FIREFLY_FLEE_RADIUS = 140;
-const FIREFLY_MAX_SPEED = 0.08;
-const FIREFLY_DRIFT_STRENGTH = 0.003;
+  const fireflyState = [];
+  const FIREFLY_FLEE_RADIUS = 140;
+  const FIREFLY_MAX_SPEED = 0.08;
+  const FIREFLY_DRIFT_STRENGTH = 0.003;
 
-function createFireflies(count = 25) {
+  function createFireflies(count = 25) {
   const container = document.querySelector('.fireflies');
-  if (!container) return;
+    if (!container) return;
 
-  container.innerHTML = '';
-  fireflyState.length = 0;
+    container.innerHTML = '';
+    fireflyState.length = 0;
 
-  for (let i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
     const f = document.createElement('div');
     f.className = 'firefly';
 
@@ -1118,10 +1124,10 @@ function createFireflies(count = 25) {
   animateFireflies();
 }
 
-function animateFireflies() {
-  function tick() {
-    const cursorX = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cursor-x')) || window.innerWidth / 2;
-    const cursorY = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cursor-y')) || window.innerHeight / 2;
+  function animateFireflies() {
+    function tick() {
+      const cursorX = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cursor-x')) || window.innerWidth / 2;
+      const cursorY = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cursor-y')) || window.innerHeight / 2;
 
     fireflyState.forEach((fly) => {
       const px = (fly.x / 100) * window.innerWidth;
@@ -1131,74 +1137,74 @@ function animateFireflies() {
       const dy = py - cursorY;
       const dist = Math.hypot(dx, dy);
 
-      /* gentle drifting */
+/* gentle drifting */
       fly.vx += (Math.random() - 0.5) * FIREFLY_DRIFT_STRENGTH;
       fly.vy += (Math.random() - 0.5) * FIREFLY_DRIFT_STRENGTH;
 
-      /* flee from torch */
-      if (dist < FIREFLY_FLEE_RADIUS) {
-        const force = (FIREFLY_FLEE_RADIUS - dist) / FIREFLY_FLEE_RADIUS;
-        const nx = dx / (dist || 1);
-        const ny = dy / (dist || 1);
+/* flee from torch */
+    if (dist < FIREFLY_FLEE_RADIUS) {
+      const force = (FIREFLY_FLEE_RADIUS - dist) / FIREFLY_FLEE_RADIUS;
+      const nx = dx / (dist || 1);
+      const ny = dy / (dist || 1);
 
-        fly.vx += nx * force * 0.08;
-        fly.vy += ny * force * 0.08;
-      }
+      fly.vx += nx * force * 0.08;
+      fly.vy += ny * force * 0.08;
+    }
 
-      /* speed limit */
-      fly.vx = Math.max(-FIREFLY_MAX_SPEED, Math.min(FIREFLY_MAX_SPEED, fly.vx));
-      fly.vy = Math.max(-FIREFLY_MAX_SPEED, Math.min(FIREFLY_MAX_SPEED, fly.vy));
+/* speed limit */
+    fly.vx = Math.max(-FIREFLY_MAX_SPEED, Math.min(FIREFLY_MAX_SPEED, fly.vx));
+    fly.vy = Math.max(-FIREFLY_MAX_SPEED, Math.min(FIREFLY_MAX_SPEED, fly.vy));
 
-      /* move */
-      fly.x += fly.vx;
-      fly.y += fly.vy;
+/* move */
+    fly.x += fly.vx;
+    fly.y += fly.vy;
 
-      /* bounce from edges */
-      if (fly.x <= 0 || fly.x >= 100) fly.vx *= -1;
-      if (fly.y <= 0 || fly.y >= 100) fly.vy *= -1;
+/* bounce from edges */
+    if (fly.x <= 0 || fly.x >= 100) fly.vx *= -1;
+    if (fly.y <= 0 || fly.y >= 100) fly.vy *= -1;
 
-      fly.x = Math.max(0, Math.min(100, fly.x));
-      fly.y = Math.max(0, Math.min(100, fly.y));
+    fly.x = Math.max(0, Math.min(100, fly.x));
+    fly.y = Math.max(0, Math.min(100, fly.y));
 
-      fly.el.style.left = `${fly.x}%`;
-      fly.el.style.top = `${fly.y}%`;
-    });
+    fly.el.style.left = `${fly.x}%`;
+    fly.el.style.top = `${fly.y}%`;
+  });
 
     requestAnimationFrame(tick);
   }
 
-  requestAnimationFrame(tick);
-}
+    requestAnimationFrame(tick);
+  }
 
-    /* =========================================================
-       30. START EXPERIENCE
-    ========================================================== */
-    function startExperience() {
-      if (state.active) return;
+ /* =========================================================
+    30. START EXPERIENCE
+========================================================== */
+  function startExperience() {
+    if (state.active) return;
 
-      state.active = true;
-      body.classList.add('active');
-      startSwitch.classList.add('on');
-      overlay.classList.add('hide');
-      fadeAmbientIn();
-      createFireflies(14);
+    state.active = true;
+    body.classList.add('active');
+    startSwitch.classList.add('on');
+    overlay.classList.add('hide');
+    fadeAmbientIn();
+    createFireflies(14);
 
 /* set torch position only, but do not trigger animal detection yet */
-document.documentElement.style.setProperty('--cursor-x', `${window.innerWidth / 2}px`);
-document.documentElement.style.setProperty('--cursor-y', `${window.innerHeight / 2}px`);
+    document.documentElement.style.setProperty('--cursor-x', `${window.innerWidth / 2}px`);
+    document.documentElement.style.setProperty('--cursor-y', `${window.innerHeight / 2}px`);
     
-    }
+  }
 
-    /* =========================================================
-       31. EVENT LISTENERS
-    ========================================================== */
-    startSwitch.addEventListener('click', startExperience);
-    document.addEventListener('mousemove', handleMove);
-    document.addEventListener('touchmove', handleMove, { passive: true });
+/* =========================================================
+  31. EVENT LISTENERS
+========================================================== */
+  startSwitch.addEventListener('click', startExperience);
+      document.addEventListener('mousemove', handleMove);
+      document.addEventListener('touchmove', handleMove, { passive: true });
 
-    window.addEventListener('resize', () => {
-      setTorch(window.innerWidth / 2, window.innerHeight / 2);
-    });
-  </script>
-</body>
+        window.addEventListener('resize', () => {
+        setTorch(window.innerWidth / 2, window.innerHeight / 2);
+      });
+    </script>
+  </body>
 </html>
