@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Interactive Widget with JavaScript</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	<script>
+		// alert("Well hello there!");
+		function getGST(){
+			// alert(document.getElementById("cost").value * 0.02);
+			let mycost =document.getElementById("cost").value*0.02;
+			mycost=mycost.toFixed(2);
+			if(mycost >0){
+				// alert("You need to pay $"+mycost+" extra!");
+				// document.getElementById("msg").innerHTML="$"+mycost;
+				// document.getElementById("id01").style.display="block";
+				$("#msg").text("$"+mycost);
+				$("#id01").fadeIn();
+			} else{
+				alert("Please enter a valid number");
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="w3-container">
+		<h1>GST Calculator</h1>
+		<div class="w3-panel">
+		<p>Uh oh. GST is set to increase by 2%. Check out how much extra you need to pay in the near future. Enter the cost price of an item you're paying for now.</p>
+		<label>
+			cost: <input type="number" length="8" id="cost">
+		</label>
+	</div>
+		<button class="w3-blue w3-xlarge" onclick="getGST()">Calculate</button>
+	</div>
+
+	<!-- The Modal -->
+	<div id="id01" class="w3-modal">
+		<div class="w3-modal-content">
+			<div class="w3-container">
+		 		<span onclick="document.getElementById('id01').style.display='none'" 
+				class="w3-button w3-display-topright">&times;</span>
+				<h1>Here's how much extra you need to pay</h1>
+				<div class="w3-panel w3-yellow w3-border">
+					<h3 class="w3-center" id="msg"></h3>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Interactive Widget with JavaScript</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		function getGST(){
+			let rebate = 0;
+			let mycost = document.getElementById("cost").value*0.02*12;// value x2 x12
+			mycost = mycost.toFixed(2);//2 decimal place
+			if(mycost>0){
+				rebate= $("input[name=rebate]:checked").val();//check box
+				$("#id01 h1").text("Here's how much extra you need to pay");//header on box
+				$("#id01 p").text(mycost +"-"+ rebate +"="); //formula
+				$("#msg").text("$" +(mycost-rebate).toFixed());// display answer
+				$("#id01").fadeIn();
+			} else {
+				alert("Please enter a valid number");//no value text alert
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="w3-container">
+		<h1>GST Calculator</h1>
+		<h5 class="w3-large w3-teal w3-padding">Monthly Expenses</h5><div class="w3-panel">
+		<p>Uh oh. GST is set to increase by 2% in 2024. Check out how much extra you need to pay in the near future. Enter your estimated monthly expenses.</p>
+		<label>Expenses per month:<input type="number" length="8" id="cost"></label>
+		</div>
+		<h5 class="w3-large w3-teal w3-padding">GST U-SAVE Rebates</h5>
+		<div class="w3-panel">
+		<p>What type of house do you stay in</p>
+		<label><input class="w3-radio" name="rebate" type="radio" value="0" checked="checked">Private</label><br>
+		<label><input class="w3-radio" name="rebate" type="radio" value="440">HDB Executive / Multi-generation</label><br>
+		<label><input class="w3-radio" name="rebate" type="radio" value="520">HDB 5-room</label><br>
+		<label><input class="w3-radio" name="rebate" type="radio" value="600">HDB 4-room</label><br>
+		<label><input class="w3-radio" name="rebate" type="radio" value="680">HDB 3-room</label><br>
+		<label><input class="w3-radio" name="rebate" type="radio" value="760">HDB 1- and 2-room</label><br>						</div>
+		<button class="w3-blue w3-xlarge w3-margin-top" onclick="getGST()">Calculate</button>
+	
+	</div>
+	<!-- The Modal -->
+	<div id="id01" class="w3-modal">
+	  <div class="w3-modal-content">
+	    <div class="w3-container w3-center">
+	      <span onclick="document.getElementById('id01').style.display='none'" 
+	      class="w3-button w3-display-topright">&times;</span>
+	      <h1></h1>
+	      <div class="w3-panel w3-yellow w3-border">
+	      	<p></p>
+			  <h3 class="w3-center" id="msg"></h3>
+			</div>
+	    </div>
+	  </div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
