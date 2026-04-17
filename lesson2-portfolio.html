@@ -1,0 +1,1529 @@
+<!-- ===================================== -->
+<!-- 1. START OF HTML -->
+<!-- ===================================== -->
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ===================================== -->
+<!-- 1.1 START OF HEAD -->
+<!-- ===================================== -->
+<head>
+
+    <!-- ===================================== -->
+    <!-- 1.1.1 START OF META -->
+    <!-- ===================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ===================================== -->
+    <!-- 1.1.1 END OF META -->
+    <!-- ===================================== -->
+
+    <!-- ===================================== -->
+    <!-- 1.1.2 START OF TITLE -->
+    <!-- ===================================== -->
+    <title>Shirley | Immersive Portfolio</title>
+    <!-- ===================================== -->
+    <!-- 1.1.2 END OF TITLE -->
+    <!-- ===================================== -->
+
+    <!-- ===================================== -->
+    <!-- 1.1.3 START OF GOOGLE FONTS -->
+    <!-- ===================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@100;400;900&family=Poppins:wght@700&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <!-- ===================================== -->
+    <!-- 1.1.3 END OF GOOGLE FONTS -->
+    <!-- ===================================== -->
+
+    <!-- ===================================== -->
+    <!-- 1.1.4 START OF CSS -->
+    <!-- ===================================== -->
+    <style>
+        /* ===================================== */
+        /* 2. START OF CSS */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 2.1 START OF ROOT VARIABLES */
+        /* ===================================== */
+        :root {
+            --glass: rgba(0, 0, 0, 0.35);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --blur: blur(15px);
+            --fade-speed: 0.45s;
+            --ui-fade: 1s;
+            --white: #ffffff;
+            --shadow-strong: 0 0 18px rgba(255,255,255,0.65);
+            --text-shadow-dark: 4px 4px 24px rgba(0,0,0,1);
+        }
+        /* ===================================== */
+        /* 2.1 END OF ROOT VARIABLES */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 2.2 START OF BASE / RESET */
+        /* ===================================== */
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            cursor: default;
+        }
+        /* ===================================== */
+        /* 2.2 END OF BASE / RESET */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 2.3 START OF COMMON LAYERS */
+        /* ===================================== */
+        .hidden {
+            display: none !important;
+        }
+
+        .visible {
+            opacity: 1 !important;
+        }
+
+        .screen-cover-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .noise-overlay-active {
+            opacity: 0.18 !important;
+        }
+        /* ===================================== */
+        /* 2.3 END OF COMMON LAYERS */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 2.4 START OF START SCREEN */
+        /* ===================================== */
+        #startup-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 12000;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #on-switch {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 999px;
+            cursor: inherit;
+            font-family: 'Blinker', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            box-shadow: 0 0 18px rgba(255,255,255,0.18);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        #on-switch:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 22px rgba(255,255,255,0.28);
+            background: rgba(255,255,255,0.1);
+        }
+        /* ===================================== */
+        /* 2.4 END OF START SCREEN */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 2.5 START OF BACKGROUND LAYERS */
+        /* ===================================== */
+        #noise-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 50;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+
+        #noise-layer video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .vortex-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity var(--fade-speed);
+            pointer-events: none;
+        }
+
+        #vortex-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .vortex-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.82) 100%);
+            pointer-events: none;
+        }
+        /* ===================================== */
+        /* 2.5 END OF BACKGROUND LAYERS */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 2.6 START OF GLITCH TRANSITION LAYER */
+        /* ===================================== */
+        #glitch-transition {
+            position: fixed;
+            inset: 0;
+            z-index: 15000;
+            pointer-events: none;
+            opacity: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(255,255,255,0.06) 0px,
+                    rgba(255,255,255,0.06) 1px,
+                    transparent 1px,
+                    transparent 3px
+                );
+            mix-blend-mode: screen;
+        }
+
+        #glitch-transition.active {
+            animation: glitchTransitionBurst 0.55s ease forwards;
+        }
+
+        @keyframes glitchTransitionBurst {
+            0% {
+                opacity: 0;
+                transform: translateX(0);
+                filter: brightness(1);
+            }
+            10% {
+                opacity: 0.9;
+                transform: translateX(-6px);
+                filter: brightness(1.4);
+            }
+            20% {
+                opacity: 0.25;
+                transform: translateX(5px);
+                filter: brightness(1);
+            }
+            35% {
+                opacity: 0.75;
+                transform: translateX(-3px);
+                filter: brightness(1.3);
+            }
+            50% {
+                opacity: 0.15;
+                transform: translateX(2px);
+            }
+            70% {
+                opacity: 0.6;
+                transform: translateX(-2px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(0);
+                filter: brightness(1);
+            }
+        }
+        /* ===================================== */
+        /* 2.6 END OF GLITCH TRANSITION LAYER */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 2.7 START OF MAIN UI / NAV BUTTON */
+        /* ===================================== */
+        .ui-layer {
+            position: relative;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity var(--ui-fade) ease;
+        }
+
+        .frosted-btn {
+            background: var(--glass);
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            cursor: inherit;
+            text-align: center;
+            color: white;
+            transition: box-shadow 0.25s ease, transform 0.25s ease, background 0.25s ease;
+        }
+
+        .frosted-btn:hover {
+            box-shadow: 0 0 16px rgba(255,255,255,0.25);
+            transform: scale(1.02);
+            background: rgba(255,255,255,0.08);
+        }
+
+        #action-btn {
+            padding: 16px 48px;
+        }
+
+        .nav-text {
+            color: white;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            pointer-events: none;
+            text-shadow: 0 0 12px rgba(255,255,255,0.12);
+        }
+
+        .bold-start {
+            font-weight: 900;
+            font-family: 'Blinker', sans-serif;
+        }
+
+        .thin-rest {
+            font-weight: 100;
+            font-family: 'Blinker', sans-serif;
+        }
+
+        .script-style {
+            font-family: 'Tangerine', cursive;
+            letter-spacing: 3px;
+            text-transform: none !important;
+            font-size: 5.5rem;
+            text-shadow: var(--text-shadow-dark);
+            padding: 10px 34px;
+        }
+
+        .plain-style {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            padding: 14px 28px;
+            font-size: 3rem;
+            text-shadow: var(--text-shadow-dark);
+        }
+
+        .project-style {
+            font-family: 'Blinker', sans-serif;
+            font-weight: 900;
+            padding: 14px 28px;
+            font-size: 3.5rem;
+            text-shadow: var(--text-shadow-dark);
+        }
+
+        .channel-box-glow {
+            box-shadow: 0 0 16px rgba(255,255,255,0.35);
+        }
+
+        .glitch-enter-reveal {
+            animation: enterGlitchReveal 0.95s steps(1, end) forwards;
+        }
+
+        @keyframes enterGlitchReveal {
+            0% {
+                opacity: 0;
+                transform: translateX(0);
+                filter: blur(2px);
+            }
+            8% {
+                opacity: 0.9;
+                transform: translateX(-4px);
+                filter: blur(0);
+            }
+            16% {
+                opacity: 0.15;
+                transform: translateX(5px);
+            }
+            24% {
+                opacity: 1;
+                transform: translateX(-2px);
+            }
+            32% {
+                opacity: 0.35;
+                transform: translateX(3px);
+            }
+            45% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            58% {
+                opacity: 0.55;
+                transform: translateX(-1px);
+            }
+            70% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+                filter: blur(0);
+            }
+        }
+        /* ===================================== */
+        /* 2.7 END OF MAIN UI / NAV BUTTON */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 2.8 START OF ABOUT SCENE */
+        /* ===================================== */
+        #about-scene {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 600;
+            background: transparent;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+            cursor: inherit;
+        }
+
+        .text-container {
+            max-width: 980px;
+            width: 90%;
+            font-family: 'Tangerine', cursive;
+            font-size: 3.6rem;
+            line-height: 1.2;
+            text-align: center;
+            perspective: 1000px;
+            margin-top: -10vh;
+        }
+
+        .letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translate3d(var(--x), var(--y), 1000px) rotate(var(--r));
+            filter: blur(10px);
+            transition:
+                transform 2s cubic-bezier(0.1, 0.5, 0.2, 1),
+                opacity 1.5s ease-out,
+                filter 1.5s ease-out;
+            text-shadow:
+                0 0 8px rgba(255,255,255,0.12),
+                4px 4px 26px rgba(0,0,0,1),
+                0 0 20px rgba(0,0,0,0.75);
+        }
+
+        .letter.formed {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) rotate(0deg);
+            filter: blur(0px);
+        }
+
+        .letter.exit {
+            opacity: 0;
+            transform: translate3d(0, 0, 0) rotate(0deg);
+            filter: blur(8px);
+        }
+
+        .line-break {
+            display: block;
+            height: 40px;
+        }
+
+        .return-btn {
+            font-family: 'Tangerine', cursive;
+            font-weight: 700;
+            font-size: 5.5rem;
+            cursor: inherit;
+            color: white;
+            opacity: 0;
+            text-shadow:
+                0 0 15px rgba(255,255,255,0.7),
+                4px 4px 20px rgba(0,0,0,1);
+            transition: transform 0.3s ease, opacity 1s ease;
+            pointer-events: all;
+        }
+
+        .return-btn:hover {
+            transform: scale(1.04);
+        }
+        /* ===================================== */
+        /* 2.8 END OF ABOUT SCENE */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 2.9 START OF PORTFOLIO SCENE */
+        /* ===================================== */
+        #portfolio-scene {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 500;
+            background-color: #000;
+            overflow: hidden;
+            cursor: inherit;
+        }
+
+        #sea-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.75;
+        }
+
+        .bubble-image {
+            position: absolute;
+            width: 340px;
+            height: 340px;
+            opacity: 0;
+            transition: opacity 1.5s ease, transform 3s ease;
+            z-index: 160;
+            pointer-events: auto;
+            cursor: inherit;
+            animation: floatBubble 7s ease-in-out infinite;
+        }
+
+        .bubble-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            pointer-events: none;
+        }
+
+        .bubble-label {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            text-align: center;
+            font-family: 'Blinker', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: white;
+            text-shadow:
+                0 0 10px rgba(255,255,255,0.35),
+                3px 3px 16px rgba(0,0,0,0.95);
+            pointer-events: none;
+        }
+
+        .b-sia {
+            top: 6%;
+            left: 6%;
+            animation-delay: 0s;
+        }
+
+        .b-zoo {
+            top: 6%;
+            right: 6%;
+            animation-delay: 1.5s;
+        }
+
+        .b-others {
+            bottom: 8%;
+            left: 4%;
+            animation-delay: 2.5s;
+        }
+
+        .b-garden {
+            bottom: 8%;
+            right: 4%;
+            animation-delay: 3.5s;
+        }
+
+        @keyframes floatBubble {
+            0%   { transform: translateY(0px) translateX(0px) scale(1); }
+            25%  { transform: translateY(-12px) translateX(6px) scale(1.02); }
+            50%  { transform: translateY(-22px) translateX(-4px) scale(1); }
+            75%  { transform: translateY(-10px) translateX(8px) scale(0.99); }
+            100% { transform: translateY(0px) translateX(0px) scale(1); }
+        }
+
+        .astronaut-container {
+            position: absolute;
+            bottom: -120%;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: bottom 4s cubic-bezier(0.1, 0.5, 0.2, 1);
+            z-index: 170;
+            cursor: inherit;
+        }
+
+        #spacemen-vid {
+            width: 1200px;
+            display: block;
+            pointer-events: none;
+        }
+
+        .helmet-nav {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Blinker', sans-serif;
+            font-weight: 900;
+            font-size: 3.2rem;
+            color: white;
+            letter-spacing: 10px;
+            cursor: inherit;
+            text-shadow:
+                0 0 8px rgba(255,255,255,0.9),
+                0 0 18px rgba(255,255,255,0.65);
+            z-index: 170;
+            opacity: 0;
+            transition: opacity 2s ease, transform 0.3s ease, text-shadow 0.3s ease;
+            background: none;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+        }
+
+        .helmet-nav:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            text-shadow:
+                0 0 10px rgba(255,255,255,1),
+                0 0 24px rgba(255,255,255,0.85);
+        }
+        /* ===================================== */
+        /* 2.9 END OF PORTFOLIO SCENE */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 2.10 START OF CONTACT SCENE */
+        /* ===================================== */
+        #contact-scene {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 700;
+            cursor: inherit;
+        }
+
+        #contact-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #contact-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(820px, 88vw);
+            background: rgba(0,0,0,0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 18px;
+            color: white;
+            padding: 34px 40px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            z-index: 710;
+            cursor: inherit;
+        }
+
+        #contact-card h2 {
+            margin: 0 0 18px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.6rem;
+            text-shadow: var(--text-shadow-dark);
+        }
+
+        #contact-card p {
+            margin: 10px 0;
+            font-family: 'Blinker', sans-serif;
+            font-size: 1.6rem;
+            text-shadow: var(--text-shadow-dark);
+        }
+
+        #contact-return {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 12px 24px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            cursor: inherit;
+        }
+        /* ===================================== */
+        /* 2.10 END OF CONTACT SCENE */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 2.11 START OF RESPONSIVE */
+        /* ===================================== */
+        @media (max-width: 1100px) {
+            .bubble-image {
+                width: 260px;
+                height: 260px;
+            }
+
+            .bubble-label {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav-text { font-size: 2.8rem; }
+            .script-style { font-size: 4rem; }
+            .project-style, .plain-style { font-size: 2.4rem; }
+            .text-container { font-size: 2.8rem; }
+            #spacemen-vid { width: 760px; }
+            .helmet-nav { font-size: 2.1rem; }
+
+            .bubble-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            .bubble-label {
+                font-size: 1.15rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #action-btn { padding: 14px 28px; }
+            .nav-text { font-size: 2.2rem; letter-spacing: 8px; }
+            .script-style { font-size: 3.2rem; }
+            .project-style, .plain-style { font-size: 2rem; }
+            .text-container { font-size: 2.2rem; }
+            #spacemen-vid { width: 520px; }
+            .helmet-nav { font-size: 1.5rem; letter-spacing: 6px; }
+
+            .bubble-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .bubble-label {
+                font-size: 0.95rem;
+            }
+
+            #contact-card h2 { font-size: 2rem; }
+            #contact-card p { font-size: 1.2rem; }
+        }
+        /* ===================================== */
+        /* 2.11 END OF RESPONSIVE */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 2. END OF CSS */
+        /* ===================================== */
+    </style>
+    <!-- ===================================== -->
+    <!-- 1.1.4 END OF CSS -->
+    <!-- ===================================== -->
+
+</head>
+<!-- ===================================== -->
+<!-- 1.1 END OF HEAD -->
+<!-- ===================================== -->
+
+<!-- ===================================== -->
+<!-- 1.2 START OF BODY -->
+<!-- ===================================== -->
+<body>
+
+    <!-- ===================================== -->
+    <!-- 1.2.1 START OF AUDIO FILES -->
+    <!-- ===================================== -->
+    <audio id="audio-ontv" preload="auto">
+        <source src="images/ontv.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="audio-ontv2" preload="auto">
+        <source src="images/ontv2.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="audio-whitenoise" loop preload="auto">
+        <source src="images/whitenoise.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="audio-enter-change" preload="auto">
+        <source src="images/enter-change.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="audio-book" loop preload="auto">
+        <source src="images/Book.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="audio-space" loop preload="auto">
+        <source src="images/space.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="audio-whimsical" loop preload="auto">
+        <source src="images/whimsical.mp3" type="audio/mpeg">
+    </audio>
+    <!-- ===================================== -->
+    <!-- 1.2.1 END OF AUDIO FILES -->
+    <!-- ===================================== -->
+
+    <!-- ===================================== -->
+    <!-- 1.2.2 START OF STARTUP SCREEN -->
+    <!-- ===================================== -->
+    <div id="startup-screen">
+        <button id="on-switch">ON</button>
+    </div>
+    <!-- ===================================== -->
+    <!-- 1.2.2 END OF STARTUP SCREEN -->
+    <!-- ===================================== -->
+
+    <!-- ===================================== -->
+    <!-- 1.2.3 START OF GLITCH TRANSITION -->
+    <!-- ===================================== -->
+    <div id="glitch-transition"></div>
+    <!-- ===================================== -->
+    <!-- 1.2.3 END OF GLITCH TRANSITION -->
+    <!-- ===================================== -->
+
+    <!-- ===================================== -->
+    <!-- 1.2.4 START OF NOISE LAYER -->
+    <!-- ===================================== -->
+    <div id="noise-layer">
+        <video autoplay muted loop playsinline>
+            <source src="images/tv-noise.webm" type="video/webm">
+            <source src="images/tv-noise.mp4" type="video/mp4">
+        </video>
+    </div>
+    <!-- ===================================== -->
+    <!-- 1.2.4 END OF NOISE LAYER -->
+    <!-- ===================================== -->
+
+    <!-- ===================================== -->
+    <!-- 1.2.5 START OF MAIN BACKGROUND CONTAINER -->
+    <!-- ===================================== -->
+    <div class="vortex-container" id="bg-container">
+        <video id="vortex-bg" autoplay muted loop playsinline>
+            <source src="images/tv-noise.webm" type="video/webm">
+            <source src="images/tv-noise.mp4" type="video/mp4">
+        </video>
+    </div>
+    <!-- ===================================== -->
+    <!-- 1.2.5 END OF MAIN BACKGROUND CONTAINER -->
+    <!-- ===================================== -->
+
+    <!-- ===================================== -->
+    <!-- 1.2.6 START OF MAIN UI -->
+    <!-- ===================================== -->
+    <main class="ui-layer" id="main-ui">
+        <div class="frosted-btn" id="action-btn">
+            <div class="nav-text" id="btn-label">
+                <span class="bold-start">E</span><span class="thin-rest">NTER</span>
+            </div>
+        </div>
+    </main>
+    <!-- ===================================== -->
+    <!-- 1.2.6 END OF MAIN UI -->
+    <!-- ===================================== -->
+
+    <!-- ===================================== -->
+    <!-- 1.2.7 START OF ABOUT SCENE -->
+    <!-- ===================================== -->
+    <div id="about-scene">
+        <div class="text-container" id="flying-text"></div>
+    </div>
+    <!-- ===================================== -->
+    <!-- 1.2.7 END OF ABOUT SCENE -->
+    <!-- ===================================== -->
+
+    <!-- ===================================== -->
+    <!-- 1.2.8 START OF PORTFOLIO SCENE -->
+    <!-- ===================================== -->
+    <div id="portfolio-scene">
+        <video id="sea-bg" autoplay muted playsinline>
+            <source src="images/space.webm" type="video/webm">
+            <source src="images/space.mp4" type="video/mp4">
+        </video>
+
+        <!-- 1.2.8.1 START OF PORTFOLIO BUBBLES -->
+        <div class="bubble-image b-sia">
+            <img src="images/sia-bubble.png" alt="SIA Bubble">
+            <div class="bubble-label">VIDEOS</div>
+        </div>
+
+        <div class="bubble-image b-zoo">
+            <img src="images/zoo-bubble.png" alt="Zoo Bubble">
+            <div class="bubble-label">WEBSITES</div>
+        </div>
+
+        <div class="bubble-image b-others">
+            <img src="images/text-bubble.png" alt="Others Bubble">
+            <div class="bubble-label">AI</div>
+        </div>
+
+        <div class="bubble-image b-garden">
+            <img src="images/gardenfest-bubble.png" alt="Garden Fest Bubble">
+            <div class="bubble-label">BRANDING</div>
+        </div>
+        <!-- 1.2.8.1 END OF PORTFOLIO BUBBLES -->
+
+        <!-- 1.2.8.2 START OF ASTRONAUT -->
+        <div class="astronaut-container" id="astro-box">
+            <video id="spacemen-vid" autoplay muted loop playsinline>
+                <source src="images/spacemen.webm" type="video/webm">
+                <source src="images/spacemen.mp4" type="video/mp4">
+            </video>
+            <div class="helmet-nav" id="helmet-enter">ENTER</div>
+        </div>
+        <!-- 1.2.8.2 END OF ASTRONAUT -->
+    </div>
+    <!-- ===================================== -->
+    <!-- 1.2.8 END OF PORTFOLIO SCENE -->
+    <!-- ===================================== -->
+
+    <!-- ===================================== -->
+    <!-- 1.2.9 START OF CONTACT SCENE -->
+    <!-- ===================================== -->
+    <div id="contact-scene">
+        <video id="contact-bg" autoplay muted loop playsinline>
+            <source src="images/whimsical.webm" type="video/webm">
+            <source src="images/whimsical.mp4" type="video/mp4">
+        </video>
+
+        <div id="contact-card">
+            <h2>Let’s create something together</h2>
+            <p>hello@shirleystudio.com</p>
+            <p>Instagram / @shirleycreates</p>
+            <p>LinkedIn / Shirley Creative</p>
+            <p>TikTok / designbyshirley</p>
+            <div class="frosted-btn" id="contact-return">ENTER</div>
+        </div>
+    </div>
+    <!-- ===================================== -->
+    <!-- 1.2.9 END OF CONTACT SCENE -->
+    <!-- ===================================== -->
+
+    <!-- ===================================== -->
+    <!-- 1.2.10 START OF JAVASCRIPT -->
+    <!-- ===================================== -->
+    <script>
+        /* ===================================== */
+        /* 3. START OF JS */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 3.1 START OF DOM ELEMENTS */
+        /* ===================================== */
+        const startupScreen = document.getElementById('startup-screen');
+        const onSwitch = document.getElementById('on-switch');
+        const glitchTransition = document.getElementById('glitch-transition');
+
+        const btn = document.getElementById('action-btn');
+        const helmetBtn = document.getElementById('helmet-enter');
+        const contactReturnBtn = document.getElementById('contact-return');
+
+        const label = document.getElementById('btn-label');
+        const bg = document.getElementById('vortex-bg');
+        const bgCont = document.getElementById('bg-container');
+        const ui = document.getElementById('main-ui');
+        const noise = document.getElementById('noise-layer');
+        const body = document.body;
+
+        const seaBg = document.getElementById('sea-bg');
+        const aboutScene = document.getElementById('about-scene');
+        const portfolioScene = document.getElementById('portfolio-scene');
+        const contactScene = document.getElementById('contact-scene');
+        const contactCard = document.getElementById('contact-card');
+
+        const audioOntv = document.getElementById('audio-ontv');
+        const audioOntv2 = document.getElementById('audio-ontv2');
+        const audioWhiteNoise = document.getElementById('audio-whitenoise');
+        const audioEnterChange = document.getElementById('audio-enter-change');
+        const audioBook = document.getElementById('audio-book');
+        const audioSpace = document.getElementById('audio-space');
+        const audioWhimsical = document.getElementById('audio-whimsical');
+
+        const bubbleImages = document.querySelectorAll('.bubble-image');
+        /* ===================================== */
+        /* 3.1 END OF DOM ELEMENTS */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 3.2 START OF STATE VARIABLES */
+        /* ===================================== */
+        let currentStage = "power-off";
+        let autoLoop;
+        let storyStep = 0;
+        let audioEnabled = false;
+        let whiteNoisePulse;
+        /* ===================================== */
+        /* 3.2 END OF STATE VARIABLES */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 3.3 START OF STORY CONTENT */
+        /* ===================================== */
+        const story = [
+            `About Me\n\nThe mind works in fascinating ways.\nIdeas stretch far beyond our expectations,\nshifting, growing, taking shape over time.`,
+            `So I keep exploring —\nthrough the things I create.\n\nNever stop dreaming.\nNever stop imagining.\nNever stop creating.`,
+            `Everything fades. Moments pass. Things break.\n\nBut creativity doesn’t. It evolves —\ncarried forward through every generation,`,
+            `Each one leaving behind a quiet footprint\nfor the next to follow.`,
+            `Enter`
+        ];
+        /* ===================================== */
+        /* 3.3 END OF STORY CONTENT */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 3.4 START OF AUDIO HELPERS */
+        /* ===================================== */
+        function stopAllMusic() {
+            [audioBook, audioSpace, audioWhimsical].forEach(a => {
+                a.pause();
+                a.currentTime = 0;
+            });
+        }
+
+        function stopWhiteNoise() {
+            audioWhiteNoise.pause();
+            clearInterval(whiteNoisePulse);
+        }
+
+        function startWhiteNoiseLoop() {
+            if (!audioEnabled) return;
+            audioWhiteNoise.volume = 0.12;
+            audioWhiteNoise.currentTime = 0;
+            audioWhiteNoise.play().catch(() => {});
+            clearInterval(whiteNoisePulse);
+
+            let goingUp = true;
+            whiteNoisePulse = setInterval(() => {
+                if (goingUp) {
+                    audioWhiteNoise.volume = Math.min(audioWhiteNoise.volume + 0.01, 0.2);
+                    if (audioWhiteNoise.volume >= 0.2) goingUp = false;
+                } else {
+                    audioWhiteNoise.volume = Math.max(audioWhiteNoise.volume - 0.01, 0.08);
+                    if (audioWhiteNoise.volume <= 0.08) goingUp = true;
+                }
+            }, 220);
+        }
+
+        function playEnterChange() {
+            if (!audioEnabled) return;
+            audioEnterChange.currentTime = 0;
+            audioEnterChange.play().catch(() => {});
+        }
+
+        function playSectionMusic(section) {
+            stopAllMusic();
+            if (!audioEnabled) return;
+
+            if (section === 'about') {
+                audioBook.volume = 0.35;
+                audioBook.play().catch(() => {});
+            }
+
+            if (section === 'space') {
+                audioSpace.volume = 0.38;
+                audioSpace.play().catch(() => {});
+            }
+
+            if (section === 'whimsical') {
+                audioWhimsical.volume = 0.35;
+                audioWhimsical.play().catch(() => {});
+            }
+        }
+        /* ===================================== */
+        /* 3.4 END OF AUDIO HELPERS */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 3.5 START OF CURSOR HELPERS */
+        /* ===================================== */
+        function setDefaultCursor() {
+            body.style.cursor = 'default';
+        }
+
+        function setBookCursor() {
+    body.style.cursor = "url('images/paper-pointer.png') 0 0, pointer";
+}
+
+        function setSpaceCursor() {
+            body.style.cursor = "url('images/astronaut-pointer.png') 0 0, pointer";
+        }
+
+        function setWhimsicalCursor() {
+            body.style.cursor = "url('images/mushroom-pointer.png') 0 0, pointer";
+        }
+        /* ===================================== */
+        /* 3.5 END OF CURSOR HELPERS */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 3.6 START OF VISUAL HELPERS */
+        /* ===================================== */
+        function glitchTransitionOutIn(callback) {
+            glitchTransition.classList.remove('active');
+            void glitchTransition.offsetWidth;
+            glitchTransition.classList.add('active');
+
+            setTimeout(() => {
+                if (callback) callback();
+            }, 280);
+
+            setTimeout(() => {
+                glitchTransition.classList.remove('active');
+            }, 560);
+        }
+
+        function resetMainScenes() {
+            aboutScene.style.display = 'none';
+            aboutScene.style.pointerEvents = 'none';
+            aboutScene.onclick = null;
+
+            portfolioScene.style.display = 'none';
+            contactScene.style.display = 'none';
+
+            contactCard.style.opacity = '0';
+            document.getElementById('astro-box').style.bottom = '-120%';
+            document.getElementById('helmet-enter').style.opacity = '0';
+
+            bubbleImages.forEach(b => b.style.opacity = '0');
+        }
+
+        function enableNoiseOverlay() {
+            noise.style.opacity = "0.18";
+        }
+
+        function disableNoiseOverlay() {
+            noise.style.opacity = "0";
+        }
+
+        function applyEnterRevealGlitch() {
+            const actionBtn = document.getElementById('action-btn');
+            actionBtn.classList.remove('glitch-enter-reveal');
+            void actionBtn.offsetWidth;
+            actionBtn.classList.add('glitch-enter-reveal');
+        }
+        /* ===================================== */
+        /* 3.6 END OF VISUAL HELPERS */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 3.7 START OF STARTUP FLOW */
+        /* ===================================== */
+        onSwitch.addEventListener('click', async () => {
+            audioEnabled = true;
+            startupScreen.classList.add('hidden');
+            currentStage = 'booting';
+
+            try {
+                audioOntv.volume = 0.5;
+                audioOntv.currentTime = 0;
+                await audioOntv.play();
+            } catch (e) {}
+
+            bg.src = "images/tv-noise.webm";
+            bgCont.classList.add('visible');
+
+            setDefaultCursor();
+
+            setTimeout(() => {
+                try {
+                    audioOntv2.volume = 0.55;
+                    audioOntv2.currentTime = 0;
+                    audioOntv2.play().catch(() => {});
+                } catch (e) {}
+            }, 600);
+
+            setTimeout(() => {
+                startWhiteNoiseLoop();
+                enableNoiseOverlay();
+            }, 1500);
+
+            setTimeout(() => {
+                ui.style.opacity = "1";
+                currentStage = "idle";
+                playEnterChange();
+                applyEnterRevealGlitch();
+            }, 2800);
+        });
+        /* ===================================== */
+        /* 3.7 END OF STARTUP FLOW */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 3.8 START OF MAIN CLICK HANDLERS */
+        /* ===================================== */
+        btn.addEventListener('click', () => {
+            const text = label.innerText.trim().toUpperCase();
+
+            if (currentStage === "idle" || text.includes("ENTER")) {
+                startTVFlow();
+            } else if (text.includes("ABOUT")) {
+                playEnterChange();
+                enterAboutMe();
+            } else if (text.includes("PORTFOLIO")) {
+                playEnterChange();
+                enterDive();
+            } else if (text.includes("CONTACT")) {
+                playEnterChange();
+                enterContact();
+            }
+        });
+
+        helmetBtn.addEventListener('click', () => {
+            playEnterChange();
+
+            glitchTransitionOutIn(() => {
+                resetMainScenes();
+                ui.style.display = 'block';
+                stopAllMusic();
+                startWhiteNoiseLoop();
+                enableNoiseOverlay();
+                setSpaceCursor();
+                startTVFlow();
+            });
+        });
+
+        contactReturnBtn.addEventListener('click', () => {
+            playEnterChange();
+
+            glitchTransitionOutIn(() => {
+                resetMainScenes();
+                ui.style.display = 'block';
+                stopAllMusic();
+                startWhiteNoiseLoop();
+                enableNoiseOverlay();
+                setWhimsicalCursor();
+                startTVFlow();
+            });
+        });
+        /* ===================================== */
+        /* 3.8 END OF MAIN CLICK HANDLERS */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 3.9 START OF TV / NAV FLOW */
+        /* ===================================== */
+        function startTVFlow(startIndex = 0) {
+            currentStage = "running";
+            bg.playbackRate = 1.0;
+            stopAllMusic();
+            startWhiteNoiseLoop();
+            enableNoiseOverlay();
+            setDefaultCursor();
+
+        glitchTransitionOutIn(() => {
+            bgCont.classList.add('visible');
+            ui.style.display = 'block';
+            runSequence(startIndex);
+            });
+        }
+
+        function runSequence(startIndex = 0) {
+            clearTimeout(autoLoop);
+
+            const sequence = [
+                { txt: "About Me", type: "script", vidWebm: "images/book.webm", time: 3000, pointer: 'book' },
+                { txt: "PORTFOLIO", type: "bold", vidWebm: "images/space.webm", time: 3000, pointer: 'space' },
+                { txt: "CONTACT", type: "plain", vidWebm: "images/whimsical.webm", time: 3000, pointer: 'whimsical' }
+            ];
+
+            let index = startIndex;
+
+            function nextStep() {
+                if (currentStage !== "running") return;
+
+                const item = sequence[index];
+                bgCont.classList.remove('visible');
+                ui.style.opacity = "0";
+
+                setTimeout(() => {
+                    if (currentStage !== "running") return;
+
+                    bg.setAttribute('src', item.vidWebm);
+                    bg.load();
+                    bg.play().catch(() => {});
+                    bg.playbackRate = 1.0;
+
+                    label.innerHTML = `
+                        <span class="frosted-btn channel-box-glow ${item.type === 'script' ? 'script-style' : item.type === 'bold' ? 'project-style' : 'plain-style'}">
+                            ${item.txt}
+                        </span>
+                    `;
+
+                    bgCont.classList.add('visible');
+                    ui.style.opacity = "1";
+
+                    index = (index + 1) % sequence.length;
+                    autoLoop = setTimeout(nextStep, item.time);
+                }, 450);
+            }
+
+            nextStep();
+        }
+        /* ===================================== */
+        /* 3.9 END OF TV / NAV FLOW */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 3.10 START OF ABOUT FLOW */
+        /* ===================================== */
+        function enterAboutMe() {
+            currentStage = "about";
+            clearTimeout(autoLoop);
+            storyStep = 0;
+
+            ui.style.opacity = "0";
+            stopWhiteNoise();
+            stopAllMusic();
+            disableNoiseOverlay();
+            setBookCursor();
+
+            bg.playbackRate = 0.4;
+
+            setTimeout(() => {
+                ui.style.display = 'none';
+
+                glitchTransitionOutIn(() => {
+                    aboutScene.style.display = 'flex';
+                    aboutScene.style.pointerEvents = 'auto';
+                    setBookCursor();
+                    playSectionMusic('about');
+                    playStoryPart();
+                });
+            }, 450);
+        }
+
+        function playStoryPart() {
+            const container = document.getElementById('flying-text');
+            container.innerHTML = '';
+            const text = story[storyStep];
+
+            if (storyStep === story.length - 1) {
+                const btnDiv = document.createElement('div');
+                btnDiv.className = 'return-btn';
+                btnDiv.innerText = text;
+                btnDiv.onclick = () => {
+                    playEnterChange();
+
+                    glitchTransitionOutIn(() => {
+                        aboutScene.style.display = 'none';
+                        aboutScene.style.pointerEvents = 'none';
+                        aboutScene.onclick = null;
+                        ui.style.display = 'block';
+                        stopAllMusic();
+                        startWhiteNoiseLoop();
+                        enableNoiseOverlay();
+                        setSpaceCursor();
+                        startTVFlow(1);
+                    });
+                };
+
+                container.appendChild(btnDiv);
+
+                setTimeout(() => {
+                    btnDiv.style.opacity = 1;
+                }, 500);
+
+                return;
+            }
+
+            createFlyingLetters(text);
+
+            aboutScene.onclick = () => {
+                aboutScene.onclick = null;
+
+                const letters = document.querySelectorAll('.letter');
+                letters.forEach((l, i) => {
+                    setTimeout(() => {
+                        l.classList.add('exit');
+                    }, i * 20);
+                });
+
+                setTimeout(() => {
+                    storyStep++;
+                    if (storyStep < story.length) {
+                        playStoryPart();
+                    }
+                }, 1200);
+            };
+        }
+
+        function createFlyingLetters(text) {
+            const container = document.getElementById('flying-text');
+            const lines = text.split('\n');
+            let globalCharIndex = 0;
+
+            lines.forEach((line) => {
+                if (line.trim() === "") {
+                    container.appendChild(document.createElement('div')).className = 'line-break';
+                    return;
+                }
+
+                const lineDiv = document.createElement('div');
+
+                line.split('').forEach((char) => {
+                    const span = document.createElement('span');
+                    span.innerText = char === ' ' ? '\u00A0' : char;
+                    span.className = 'letter';
+
+                    span.style.setProperty('--x', `${(Math.random() - 0.5) * 1500}px`);
+                    span.style.setProperty('--y', `${(Math.random() - 0.5) * 1500}px`);
+                    span.style.setProperty('--r', `${(Math.random() - 0.5) * 360}deg`);
+
+                    lineDiv.appendChild(span);
+
+                    setTimeout(() => {
+                        span.classList.add('formed');
+                    }, (globalCharIndex * 80));
+
+                    globalCharIndex++;
+                });
+
+                container.appendChild(lineDiv);
+            });
+
+            return globalCharIndex;
+        }
+        /* ===================================== */
+        /* 3.10 END OF ABOUT FLOW */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 3.11 START OF PORTFOLIO FLOW */
+        /* ===================================== */
+        seaBg.addEventListener('ended', () => {
+            seaBg.pause();
+            seaBg.currentTime = seaBg.duration;
+        });
+
+        function enterDive() {
+            currentStage = "diving";
+            clearTimeout(autoLoop);
+
+            stopWhiteNoise();
+            stopAllMusic();
+            enableNoiseOverlay();
+            setSpaceCursor();
+
+            seaBg.currentTime = 0;
+            seaBg.play().catch(() => {});
+
+            bgCont.classList.remove('visible');
+            ui.style.opacity = "0";
+
+            setTimeout(() => {
+                glitchTransitionOutIn(() => {
+                    ui.style.display = 'none';
+                    portfolioScene.style.display = 'block';
+                    setSpaceCursor();
+                    playSectionMusic('space');
+
+                    setTimeout(() => {
+                        document.getElementById('astro-box').style.bottom = "-10%";
+
+                        setTimeout(() => {
+                            bubbleImages.forEach(b => {
+                                b.style.opacity = "1";
+                            });
+                        }, 2200);
+
+                        setTimeout(() => {
+                            helmetBtn.style.opacity = "1";
+                        }, 2800);
+                    }, 1000);
+                });
+            }, 450);
+        }
+        /* ===================================== */
+        /* 3.11 END OF PORTFOLIO FLOW */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 3.12 START OF CONTACT FLOW */
+        /* ===================================== */
+        function enterContact() {
+            currentStage = "contact";
+            clearTimeout(autoLoop);
+
+            stopWhiteNoise();
+            stopAllMusic();
+            enableNoiseOverlay();
+            setWhimsicalCursor();
+
+            bgCont.classList.remove('visible');
+            ui.style.opacity = "0";
+
+            setTimeout(() => {
+                glitchTransitionOutIn(() => {
+                    ui.style.display = 'none';
+                    contactScene.style.display = 'block';
+                    setWhimsicalCursor();
+                    playSectionMusic('whimsical');
+
+                    setTimeout(() => {
+                        contactCard.style.opacity = "1";
+                    }, 1000);
+                });
+            }, 450);
+        }
+        /* ===================================== */
+        /* 3.12 END OF CONTACT FLOW */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 3.13 START OF INITIAL STATE */
+        /* ===================================== */
+        window.onload = () => {
+            currentStage = "power-off";
+            ui.style.opacity = "0";
+            setDefaultCursor();
+        };
+        /* ===================================== */
+        /* 3.13 END OF INITIAL STATE */
+        /* ===================================== */
+
+        /* ===================================== */
+        /* 3. END OF JS */
+        /* ===================================== */
+    </script>
+    <!-- ===================================== -->
+    <!-- 1.2.10 END OF JAVASCRIPT -->
+    <!-- ===================================== -->
+
+</body>
+<!-- ===================================== -->
+<!-- 1.2 END OF BODY -->
+<!-- ===================================== -->
+
+</html>
+<!-- ===================================== -->
+<!-- 1. END OF HTML -->
+<!-- ===================================== -->
